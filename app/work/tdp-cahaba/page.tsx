@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import { CaseStudySection } from "@/components/work/case-study-section";
 import { ScrollRevealImage } from "@/components/work/scroll-reveal-image";
 import { HorizontalCarousel } from "@/components/work/horizontal-carousel";
+import { Footer } from "@/components/ui/footer";
+import { footerContent } from "@/lib/footer-config";
 
 const mapImages = (files: string[], label: string) =>
   files.map((file, index) => ({
@@ -597,6 +599,7 @@ export default function TDPCahabaPage() {
           </CaseStudySection>
         </div>
       </div>
+      <Footer {...footerContent} />
     </main>
   );
 }

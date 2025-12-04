@@ -1,6 +1,8 @@
 "use client";
 
 import { PortfolioAccordion } from "@/components/ui/portfolio-accordion";
+import { Footer } from "@/components/ui/footer";
+import { footerContent } from "@/lib/footer-config";
 
 const items = [
   {
@@ -41,6 +43,7 @@ const items = [
   }
 ];
 
+
 export default function ProjectsPage() {
   return (
     <main className="min-h-screen w-full bg-white dark:bg-neutral-950 pt-32 pb-20 px-6 md:px-12">
@@ -56,6 +59,7 @@ export default function ProjectsPage() {
         
         <PortfolioAccordion items={items} />
       </div>
+      <Footer {...footerContent} />
     </main>
   );
 }

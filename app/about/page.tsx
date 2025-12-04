@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { Footer } from "@/components/ui/footer";
+import { footerContent } from "@/lib/footer-config";
 
 const experiences = [
   {
@@ -46,6 +48,7 @@ const experiences = [
     ],
   },
 ];
+
 
 export default function AboutPage() {
   return (
@@ -133,6 +136,7 @@ export default function AboutPage() {
           </div>
         </section>
       </div>
+      <Footer {...footerContent} />
     </main>
   );
 }

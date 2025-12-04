@@ -139,9 +139,9 @@ const AccordionItem = ({ item, isOpen, onHover, index }: AccordionItemProps) => 
                           ? "/images/TeakWarehouse/t1.png"
                           : item.image
                       }
-                      alt={item.title}
+                       alt={item.title}
                       className={item.id === "01" ? "w-full h-auto object-contain" : "h-full w-full object-cover"}
-                    />
+                     />
                   </div>
                 )}
                 

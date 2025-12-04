@@ -123,7 +123,7 @@ export function BackgroundPaths({
                                 bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
                                 text-black dark:text-white transition-all duration-300 
                                 group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
-                                hover:shadow-md dark:hover:shadow-neutral-800/50"
+                                hover:shadow-[0_10px_30px_rgba(47,153,85,0.35)] dark:hover:shadow-[0_10px_30px_rgba(47,153,85,0.35)]"
                             >
                                 <span className="opacity-90 group-hover:opacity-100 transition-opacity">
                                     My Work

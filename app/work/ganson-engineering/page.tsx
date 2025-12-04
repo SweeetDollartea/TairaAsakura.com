@@ -8,6 +8,8 @@ import { ScrollRevealImage } from "@/components/work/scroll-reveal-image";
 import { HorizontalCarousel } from "@/components/work/horizontal-carousel";
 import { ScrollingGallery } from "@/components/work/scrolling-gallery";
 import { PromptGallery } from "@/components/work/prompt-gallery";
+import { Footer } from "@/components/ui/footer";
+import { footerContent } from "@/lib/footer-config";
 
 const mapImages = (files: string[], prefix: string, label: string) =>
   files.map((file, index) => ({
@@ -258,6 +260,7 @@ export default function GansonEngineeringPage() {
         </div>
 
       </div>
+      <Footer {...footerContent} />
     </main>
   );
 }

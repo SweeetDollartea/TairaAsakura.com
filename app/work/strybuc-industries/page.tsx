@@ -7,6 +7,8 @@ import { CaseStudySection } from "@/components/work/case-study-section";
 import { ScrollRevealImage } from "@/components/work/scroll-reveal-image";
 import { HorizontalCarousel } from "@/components/work/horizontal-carousel";
 import { ScrollingGallery } from "@/components/work/scrolling-gallery";
+import { Footer } from "@/components/ui/footer";
+import { footerContent } from "@/lib/footer-config";
 
 const mapImages = (files: string[], label: string) =>
   files.map((file, index) => ({
@@ -435,6 +437,7 @@ export default function StrybucIndustriesPage() {
         </div>
 
       </div>
+      <Footer {...footerContent} />
     </main>
   );
 }
