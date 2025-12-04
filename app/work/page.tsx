@@ -48,7 +48,7 @@ export default function ProjectsPage() {
   return (
     <main className="min-h-screen w-full bg-white dark:bg-neutral-950 pt-32 pb-20 px-6 md:px-12">
       <div className="container mx-auto max-w-5xl">
-        <div className="mb-16">
+        <div className="mt-8 mb-16">
           <h1 className="text-4xl md:text-6xl font-bold text-neutral-900 dark:text-white mb-4 tracking-tight">
             Projects
           </h1>

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { Footer } from "@/components/ui/footer";
 import { footerContent } from "@/lib/footer-config";
@@ -58,7 +59,7 @@ export default function AboutPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start"
+          className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start"
         >
           <div className="relative mx-auto md:mx-0 w-[80%] md:w-[70%] lg:w-[60%] h-[340px] md:h-[420px] lg:h-[500px] overflow-hidden shadow-xl">
             <Image
@@ -85,8 +86,19 @@ export default function AboutPage() {
               </p>
               <br></br>
               <p>
-              When I’m away from my screen, I’m usually playing tennis, DJing minimal house music, or traveling and hunting for the best cup of americano.
+              When I'm away from my screen, I'm usually playing tennis, DJing minimal house music, or traveling and hunting for the best cup of americano.
               </p>
+              <div className="pt-4">
+                <a 
+                  href="/images/me/Taira-Asakura-Resume.pdf" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-neutral-300 dark:border-neutral-700 text-neutral-900 dark:text-white font-medium transition-all hover:border-[#2F9955] hover:text-[#2F9955] dark:hover:border-[#2F9955] dark:hover:text-[#2F9955] group"
+                >
+                  See Resume
+                  <ArrowUpRight className="w-4 h-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </a>
+              </div>
             </div>
 
           </div>
