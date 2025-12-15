@@ -14,7 +14,7 @@ const experiences = [
     points: [
       "Designed and led the creative direction of websites and applications across diverse industries using Figma, ensuring alignment with client brand identity and business goals",
       "Contributed to reduce the cart abandonment rate by 25% by collaborating with clients and developers to translate complex business requirements into an interactive user experience",
-      "Directed full lifecycle Shopify B2B and B2C implementations by coordinating cross-functional teams and maintaining clear scope and milestones, while managing and designing a mobile app end to end that launched an AR-based feature improving customer–sales communication by 20%",
+      "Directed full lifecycle Shopify B2B/B2C and mobile app implementations by coordinating cross-functional teams and maintaining clear scope and milestones, while managing and designing a mobile app end to end that launched an AR-based feature improving customer–sales communication by 20%",
       "Facilitated discovery sessions and produced detailed technical documentation— including user stories, workflows, and acceptance criteria—while guiding multidisciplinary teams to deliver optimized e-commerce solutions aligned with business goals",
     ],
   },
