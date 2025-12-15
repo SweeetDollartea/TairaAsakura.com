@@ -8,14 +8,14 @@ import { footerContent } from "@/lib/footer-config";
 
 const experiences = [
   {
-    period: "Sept 2024 - November 2024",
+    period: "Sept 2024 - November 2025",
     role: "Web Designer & Project Manager",
     company: "Silk Commerce",
     points: [
-      "Led creative direction and design of multi-industry websites and apps in Figma.",
-      "Reduced cart abandonment by 25% through UX improvements informed by discovery and developer collaboration.",
-      "Directed full Shopify B2B/B2C implementations, coordinated cross-functional teams, and managed an AR-enabled mobile app improving customer–sales communication by 20%.",
-      "Produced technical documentation, user stories, workflows, and acceptance criteria to align business goals with development execution.",
+      "Designed and led the creative direction of websites and applications across diverse industries using Figma, ensuring alignment with client brand identity and business goals",
+      "Contributed to reduce the cart abandonment rate by 25% by collaborating with clients and developers to translate complex business requirements into an interactive user experience",
+      "Directed full lifecycle Shopify B2B and B2C implementations by coordinating cross-functional teams and maintaining clear scope and milestones, while managing and designing a mobile app end to end that launched an AR-based feature improving customer–sales communication by 20%",
+      "Facilitated discovery sessions and produced detailed technical documentation— including user stories, workflows, and acceptance criteria—while guiding multidisciplinary teams to deliver optimized e-commerce solutions aligned with business goals",
     ],
   },
   {
