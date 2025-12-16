@@ -76,7 +76,7 @@ export default function TDPCahabaPage() {
   const duplicatedCahabaRow2 = [...cahabaRow2, ...cahabaRow2, ...cahabaRow2, ...cahabaRow2];
 
   return (
-    <main className="min-h-screen w-full bg-white dark:bg-neutral-950 pt-32 pb-20 px-6 md:px-12">
+    <main className="min-h-screen w-full bg-white dark:bg-neutral-950 pt-32 pb-10 md:pb-20 px-6 md:px-12">
       <div className="container mx-auto max-w-7xl">
         {/* Header Section */}
         <motion.div

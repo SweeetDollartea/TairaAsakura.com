@@ -34,7 +34,7 @@ export function Footer({
   copyright,
 }: FooterProps) {
   return (
-    <footer className="mt-24 md:mt-32 pb-6 pt-16 lg:pb-8 lg:pt-24">
+    <footer className="mt-24 md:mt-32 pb-0 pt-16 lg:pb-0 lg:pt-24">
       <div className="px-4 lg:px-8">
         <div className="flex items-start justify-between">
           <a href="/" className="flex items-center gap-x-2" aria-label={brandName}>

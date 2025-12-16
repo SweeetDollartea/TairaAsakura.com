@@ -8,7 +8,7 @@ import { footerContent } from "@/lib/footer-config";
 
 const experiences = [
   {
-    period: "Sept 2024 - November 2025",
+    period: "Sept 2024 - Present",
     role: "Web Designer & Project Manager",
     company: "Silk Commerce",
     points: [
@@ -23,9 +23,9 @@ const experiences = [
     role: "Product Designer",
     company: "Icarus Development",
     points: [
-      "Led conception and prototyping of a calendar-sharing app improving team scheduling efficiency.",
-      "Designed intuitive workflows for shared calendar management.",
-      "Converted final UI designs into functional iOS and Android code.",
+      "Led the conception, planning, and prototyping of a calendar-sharing app aimed at improving user experience for efficient scheduling and collaboration",
+      "Designed intuitive workflows and interfaces that streamline shared calendar management",
+      "Converted finalized designs into functional code for both iOS and Android platforms",
     ],
   },
   {
@@ -33,9 +33,9 @@ const experiences = [
     role: "Marketing & Online Strategist",
     company: "Lily Forbes",
     points: [
-      "Designed an improved e-commerce site increasing engagement and online sales by 5%.",
-      "Expanded brand presence through partnership research and content strategy.",
-      "Increased Instagram followers by 10% through photo and video content creation.",
+      "Increased engagement and online sales by 5% through designing a visually appealing and user-friendly e-commerce website",
+      "Researched potential partners with similar customer base to expand its presence",
+      "Increased followers on Instagram by 10% by actively capturing and uploading videos and photographs of the new season's launch",
     ],
   },
   {
@@ -43,9 +43,10 @@ const experiences = [
     role: "Marketing Design Intern",
     company: "The Foundation",
     points: [
-      "Directed photoshoots, built mood boards, and supported content campaigns for Kappa & Mori Leaf.",
-      "Increased Instagram engagement by 15% and sales by 8% for Kappa.",
-      "Designed concept soccer jerseys for all MLS teams and crafted presentations that helped secure partnerships with retailers like Erewhon and Sprouts.",
+      "Supported marketing efforts for clients, Kappa sportswear brand and Mori Leaf iced tea brand",
+      "Increased Instagram engagement by 15% and sales by 8% for Kappa through a strategic content plan, collaborating with the marketing team, directing photo shoots, researching successful campaigns, and creating mood boards",
+      "Solely designed concept soccer jerseys for each MLS team for potential partnerships",
+      "Increased sales revenue by 3% by creating presentations for premium grocery stores like Erewhon and Sprouts",
     ],
   },
 ];
@@ -53,7 +54,7 @@ const experiences = [
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen w-full bg-white dark:bg-neutral-950 pt-32 pb-20 px-6 md:px-12">
+    <main className="min-h-screen w-full bg-white dark:bg-neutral-950 pt-32 pb-10 md:pb-20 px-6 md:px-12">
       <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
