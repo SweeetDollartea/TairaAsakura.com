@@ -8,8 +8,8 @@ import { footerContent } from "@/lib/footer-config";
 
 const experiences = [
   {
-    period: "Sept 2024 - Present",
-    role: "Web Designer & Project Manager",
+    period: "Sept 2024 - November 2025",
+    role: "Product Designer & Project Manager",
     company: "Silk Commerce",
     points: [
       "Designed and led the creative direction of websites and applications across diverse industries using Figma, ensuring alignment with client brand identity and business goals",

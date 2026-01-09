@@ -78,7 +78,7 @@ export function BackgroundPaths({
                         transition={{ delay: 0.5, duration: 0.8 }}
                         className="text-xl md:text-3xl font-medium text-neutral-600 dark:text-neutral-400 mb-6 tracking-wide"
                     >
-                        Web Designer
+                        Product Designer
                     </motion.div>
 
                     <h1 className="text-5xl sm:text-7xl md:text-8xl font-bold mb-8 tracking-tighter">
