@@ -1,20 +1,15 @@
 import Link from "next/link";
-import { ExperienceEntry } from "@/components/ExperienceEntry";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <section className="hero-name-disk flex justify-center">
-        <img
-          src="/Images/Homepage/MyName-Disk.svg"
-          alt=""
-          className="block w-full max-w-[600px] h-auto object-contain"
-        />
+    <main>
+      <section className="hero-name-disk" data-reveal>
+        <img src="/Images/Homepage/MyNameDisk.png" alt="" />
       </section>
-      <section className="hero-caret">
+      <section className="hero-caret" data-reveal data-reveal-delay="80">
         <img src="/Images/Homepage/caret.svg" alt="" aria-hidden />
       </section>
-      <section className="section-work">
+      <section className="section-work" data-reveal data-reveal-delay="120">
         <Link href="/ganson" className="section-work__card">
           <img src="/Images/Homepage/Ganson.png" alt="Ganson Engineering" />
           <h2 className="section-work__title">Ganson Engineering</h2>
@@ -27,68 +22,89 @@ export default function Home() {
             <span>2025</span>
           </div>
         </Link>
-        <div className="section-work__card">
+        <Link href="/tdp" className="section-work__card">
           <img src="/Images/Homepage/TDP.png" alt="TDP" />
-          <h2 className="section-work__title">TDP</h2>
+          <h2 className="section-work__title">The Distribution Point</h2>
           <p className="section-work__desc">
-            E-commerce and Shopify theme design for TDP &amp; Cahaba.
+            Redesigning two Shopify storefronts with smarter navigation and a dramatically improved user journey.
           </p>
           <div className="section-work__meta">
-            <a href="#" className="section-work__link">Client Name</a>
+            <span className="section-work__link">Silk Commerce</span>
             <img src="/Images/Homepage/dot.svg" alt="" className="dot-icon" aria-hidden />
             <span>2025</span>
           </div>
-        </div>
-        <div className="section-work__card">
-          <img src="/Images/Homepage/Strybuc.png" alt="Strybuc" />
-          <h2 className="section-work__title">Strybuc</h2>
+        </Link>
+        <Link href="/strybuc" className="section-work__card">
+          <img src="/Images/Homepage/Strybuc.png" alt="Strybuc Industries" />
+          <h2 className="section-work__title">Strybuc Industries</h2>
           <p className="section-work__desc">
-            Photography and inventory management app for Strybuc Industries.
+            An end-to-end mobile app project—from discovery and UX design to prototype, AR measurement logic, and final App Store delivery.
           </p>
           <div className="section-work__meta">
-            <a href="#" className="section-work__link">Client Name</a>
+            <span className="section-work__link">Silk Commerce</span>
             <img src="/Images/Homepage/dot.svg" alt="" className="dot-icon" aria-hidden />
-            <span>2025</span>
+            <span>2024</span>
           </div>
-        </div>
-        <div className="section-work__card">
-          <img src="/Images/Homepage/SIte-Optics.png" alt="Site Optics" />
+        </Link>
+        <Link href="/site-optics" className="section-work__card">
+          <img src="/Images/Homepage/Site-Optics.png" alt="Site Optics" />
           <h2 className="section-work__title">Site Optics</h2>
           <p className="section-work__desc">
-            Website design and development for Site Optics.
+            A conversion-focused website designed for businesses looking to scale their organic growth by enhancing their SEO
           </p>
           <div className="section-work__meta">
-            <a href="#" className="section-work__link">Client Name</a>
+            <span className="section-work__link">Side Project</span>
             <img src="/Images/Homepage/dot.svg" alt="" className="dot-icon" aria-hidden />
             <span>2025</span>
           </div>
-        </div>
-        <div className="section-work__card">
-          <img src="/Images/Homepage/Design-Challenge.svg" alt="Design Challenge" />
+        </Link>
+        <Link href="/design-challenge" className="section-work__card">
+          <img src="/Images/Homepage/Design-Challenge.png" alt="Design Challenge" />
           <h2 className="section-work__title">Design Challenge</h2>
           <p className="section-work__desc">
-            Design challenge project showcasing creative problem-solving.
+            To elevate my mobile design skills, I executed a daily practice of conceptualizing and rendering one high-fidelity screen a day.
           </p>
           <div className="section-work__meta">
-            <a href="#" className="section-work__link">Client Name</a>
+            <span className="section-work__link">Side Project</span>
             <img src="/Images/Homepage/dot.svg" alt="" className="dot-icon" aria-hidden />
-            <span>2025</span>
+            <span>2024</span>
           </div>
+        </Link>
+      </section>
+      <div className="section-divider" role="separator" aria-hidden data-reveal data-reveal-delay="80" />
+      <h2 className="section-exp-heading" data-reveal data-reveal-delay="80">Experience</h2>
+      <section className="section-exp" aria-label="Experience" data-reveal data-reveal-delay="120">
+        <div className="section-exp__block">
+          <div className="section-exp__entry">
+            <span className="section-exp__entry-role">Product Designer @Silk Commerce</span>
+            <span className="section-exp__entry-date">Sept 2024 - Nov 2025, Irvine</span>
+          </div>
+          <div className="section-exp__divider" role="separator" aria-hidden />
+        </div>
+        <div className="section-exp__block">
+          <div className="section-exp__entry">
+            <span className="section-exp__entry-role">Product Designer @Icarus Development</span>
+            <span className="section-exp__entry-date">June 2024 - Sept 2024, (Remote)</span>
+          </div>
+          <div className="section-exp__divider" role="separator" aria-hidden />
+        </div>
+        <div className="section-exp__block">
+          <div className="section-exp__entry">
+            <span className="section-exp__entry-role">Marketing & Online Strategist @Lily Forbes</span>
+            <span className="section-exp__entry-date">June 2023 - July 2024, Davis</span>
+          </div>
+          <div className="section-exp__divider" role="separator" aria-hidden />
+        </div>
+        <div className="section-exp__block">
+          <div className="section-exp__entry">
+            <span className="section-exp__entry-role">Marketing Design Intern @The Foundation</span>
+            <span className="section-exp__entry-date">July 2023 - Sept 2024, Los Angeles</span>
+          </div>
+          <div className="section-exp__divider" role="separator" aria-hidden />
         </div>
       </section>
-      <div className="section-divider" role="separator" aria-hidden />
-      <h2 className="section-exp-heading">Experience</h2>
-      <section className="section-exp" aria-label="Experience">
-        <ExperienceEntry
-          role="Product Designer / Project Manager @Silk Commerce"
-          date="Sept 2024 - Nov 2025, Irvine"
-        />
-        <ExperienceEntry role="Founder @Lintra" date="Jan 2026 - Present, Remote" />
-        <ExperienceEntry role="[Placeholder Role]" date="[Placeholder Date]" />
-        <ExperienceEntry role="[Placeholder Role]" date="[Placeholder Date]" />
-      </section>
-      <div className="section-divider" role="separator" aria-hidden />
-      <div className="section-me">
+      <div className="section-divider" role="separator" aria-hidden data-reveal data-reveal-delay="80" />
+      <div className="section-me" data-reveal data-reveal-delay="120">
         <div className="section-me__container">
           <img src="/Images/Homepage/me.png" alt="" />
           <div className="section-me__content">
@@ -103,21 +119,9 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Resume
-              <img src="/Images/Homepage/arrow.svg" alt="" aria-hidden />
+              Resume <img src="/Images/Homepage/arrow.svg" alt="" aria-hidden />
             </a>
           </div>
-          <nav className="section-me__social" aria-label="Social links">
-            <a href="https://x.com/tairaasakura" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">
-              <img src="/Images/Homepage/x.svg" alt="" aria-hidden />
-            </a>
-            <a href="https://www.linkedin.com/in/taira-asakura/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-              <img src="/Images/Homepage/linkedin.svg" alt="" aria-hidden />
-            </a>
-            <a href="mailto:Asakurataira@gmail.com" aria-label="Email">
-              <img src="/Images/Homepage/mail.svg" alt="" aria-hidden />
-            </a>
-          </nav>
         </div>
       </div>
     </main>

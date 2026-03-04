@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Footer } from "@/components/Footer";
-import { OverlayProvider } from "@/contexts/OverlayContext";
-import { ProjectDetailOverlay } from "@/components/ProjectDetailOverlay";
-import { OverlayTrigger } from "@/components/OverlayTrigger";
+import { ConditionalFooter } from "@/components/ConditionalFooter";
+import { ScrollRestore } from "@/components/ScrollRestore";
 
 export const metadata: Metadata = {
   title: "Taira Asakura",
@@ -18,14 +16,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        <div className="page-container">
-          <OverlayProvider>
-            <ProjectDetailOverlay />
-            <OverlayTrigger />
+        <ScrollRestore>
+          <div className="page-container">
             {children}
-            <Footer />
-          </OverlayProvider>
-        </div>
+            <ConditionalFooter />
+          </div>
+        </ScrollRestore>
       </body>
     </html>
   );
