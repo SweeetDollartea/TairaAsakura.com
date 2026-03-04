@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Distribution Point — Taira Asakura</title>
+  <style>
+    :root {
+      --color-primary-black: #121213;
+      --color-ash-black: #282726;
+      --color-primary-white: #dfe7e1;
+      --color-white-white: #ffffff;
+      --color-border: #7a7a7a;
+      --design-width: 1440px;
+      --text-h2: clamp(1.75rem, 2.78vw, 40px);
+      --text-h3: clamp(1.5rem, 2.5vw, 36px);
+      --text-h4: clamp(1.125rem, 1.67vw, 24px);
+      --text-h6: clamp(0.9375rem, 1.25vw, 18px);
+      --text-h7: clamp(0.875rem, 1.11vw, 16px);
+      --ganson-margin-left: clamp(1.25rem, 5.55vw, 80px);
+      --footer-gap-top: 120px;
+      --footer-padding-bottom: clamp(3rem, 8.33vw, 120px);
+      --footer-padding-sides: var(--ganson-margin-left);
+      --footer-icon-gap: clamp(0.75rem, 1.67vw, 24px);
+    }
+
+    * { box-sizing: border-box; }
+    html { font-family: Helvetica, Arial, sans-serif; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--color-primary-black);
+      color: var(--color-primary-white);
+      overflow-x: hidden;
+    }
+
+    /* Entrance: content starts off-screen, then slides up over 0.8s */
+    .ganson-page {
+      min-height: 100vh;
+    }
+
+    .ganson-page [data-reveal] {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .ganson-page [data-reveal].is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ganson-page [data-reveal] {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+
+    /* Exit: slide down then redirect (triggered by JS) */
+    .ganson-page.is-exiting {
+      animation: ganson-slide-down 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes ganson-slide-down {
+      from { transform: translateY(0); }
+      to { transform: translateY(100%); }
+    }
+
+    /* Sticky exit button: 56×56, 60px from top/right */
+    .ganson-page__exit {
+      position: fixed;
+      top: 60px;
+      right: 60px;
+      z-index: 1001;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #DFE7E1;
+      border: 1px solid #000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+
+    .ganson-page__exit:hover {
+      opacity: 0.9;
+    }
+
+    .ganson-page__exit-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      color: #000000;
+    }
+
+    /* Hero: same layout as image-block, 12:7 aspect, no radius */
+    .ganson-page__hero {
+      margin-top: 0;
+      width: 100%;
+      overflow: hidden;
+      background: var(--color-ash-black);
+    }
+
+    .ganson-page__hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      aspect-ratio: 1440 / 840;
+    }
+
+    .ganson-page__inner {
+      max-width: 1440px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+
+    /* Metadata section: two-group strategy, Primary Black background */
+    .ganson-page__meta {
+      padding-left: clamp(1.25rem, 8.33vw, 120px);
+      padding-right: clamp(1.25rem, 8.33vw, 120px);
+      padding-bottom: clamp(3rem, 8.33vw, 120px);
+      background: var(--color-primary-black);
+    }
+
+    .ganson-page__title {
+      margin-top: clamp(3rem, 8.33vw, 120px);
+      margin-bottom: 0;
+      font-size: var(--text-h2);
+      font-weight: 400;
+      color: var(--color-white-white);
+      line-height: 1.2;
+    }
+
+    .ganson-page__divider {
+      margin-top: clamp(1.5rem, 4.17vw, 60px);
+      height: 1px;
+      background: var(--color-border);
+      border: none;
+      width: 100%;
+    }
+
+    .ganson-page__meta-row {
+      margin-top: clamp(1.5rem, 4.17vw, 60px);
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 60px;
+      width: 100%;
+    }
+
+    .ganson-page__meta-group {
+      height: auto;
+      align-self: flex-start;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      min-width: 0;
+      text-align: left;
+    }
+
+    .ganson-page__meta-item {
+      display: block;
+      min-width: 0;
+      max-width: 100%;
+      height: auto;
+      overflow-wrap: break-word;
+    }
+
+    .ganson-page__meta-item h6 {
+      margin: 0 0 12px 0;
+      font-size: var(--text-h6);
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.4;
+    }
+
+    .ganson-page__meta-item p {
+      margin: 0;
+      font-size: var(--text-h6);
+      font-weight: 400;
+      color: #DFE7E1;
+      line-height: 1.5;
+    }
+
+    .ganson-page__meta-item p:last-of-type,
+    .ganson-page__meta-item .ganson-page__meta-list {
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .ganson-page__meta-item p strong,
+    .ganson-page__meta-item li strong {
+      font-weight: 700;
+      color: #DFE7E1;
+    }
+
+    .ganson-page__meta-item a,
+    .ganson-page__meta-item a:link,
+    .ganson-page__meta-item a:visited,
+    .ganson-page__meta-item a:hover,
+    .ganson-page__meta-item a:active,
+    .ganson-page__meta-item a:focus {
+      color: var(--color-white-white);
+      text-decoration: underline;
+    }
+
+    .ganson-page__meta-item a:hover {
+      opacity: 0.85;
+    }
+
+    .ganson-page__meta-list {
+      margin: 0;
+      padding: 0 0 0 1.5em;
+      list-style: disc;
+      list-style-position: outside;
+    }
+
+    .ganson-page__meta-list li {
+      margin-bottom: 0.625em;
+      padding-left: 0.25em;
+      font-size: var(--text-h6);
+      font-weight: 400;
+      color: #DFE7E1;
+      line-height: 1.5;
+    }
+
+    .ganson-page__meta-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (min-width: 1024px) {
+      .ganson-page__meta-row {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 0;
+      }
+
+      .ganson-page__meta-group--content {
+        flex: 1 1 65%;
+        max-width: 70%;
+        min-width: 0;
+      }
+
+      .ganson-page__meta-group--details {
+        flex: 0 0 auto;
+        margin-left: 126px;
+      }
+    }
+
+    @media (min-width: 1441px) {
+      .ganson-page__inner {
+        max-width: 1440px;
+      }
+
+      .ganson-page__title {
+        margin-top: 120px;
+      }
+
+      .ganson-page__divider {
+        margin-top: 60px;
+      }
+
+      .ganson-page__meta {
+        padding-left: 120px;
+        padding-right: 120px;
+        padding-bottom: 120px;
+      }
+
+      .ganson-page__meta-row {
+        margin-top: 60px;
+      }
+
+      .ganson-page__meta-group--details {
+        margin-left: 126px;
+      }
+    }
+
+    /* Image block */
+    .ganson-page__image-block {
+      margin-top: 0;
+      width: 100%;
+      overflow: hidden;
+      background: var(--color-ash-black);
+    }
+
+    .ganson-page__inner .ganson-page__image-block {
+      width: 100vw;
+      max-width: none;
+      margin-left: calc(-50vw + 50%);
+      box-sizing: border-box;
+    }
+
+    .ganson-page__image-block img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      aspect-ratio: 1440 / 960;
+    }
+
+    .ganson-page__image-block--labeled {
+      position: relative;
+    }
+
+    .ganson-page__image-block-label {
+      position: absolute;
+      top: clamp(1.5rem, 4.17vw, 60px);
+      left: clamp(1.5rem, 5.56vw, 80px);
+      z-index: 1;
+      margin: 0;
+      font-size: var(--text-h4);
+      font-weight: 700;
+      color: var(--color-primary-black);
+      line-height: 1.2;
+    }
+
+    /* Feature #1: Ash black background, structure + padding matches ganson-conversions (inner, fixed 80px) */
+    .ganson-page__inner .tdp-feature {
+      width: 100vw;
+      max-width: none;
+      margin-left: calc(-50vw + 50%);
+      box-sizing: border-box;
+    }
+
+    .tdp-feature {
+      background: var(--color-ash-black);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: clamp(3rem, 9.44vw, 136px);
+      padding-bottom: clamp(3rem, 9.44vw, 136px);
+      padding-left: clamp(1.5rem, 5.56vw, 80px);
+      padding-right: clamp(1.5rem, 5.56vw, 80px);
+      box-sizing: border-box;
+    }
+
+    .tdp-feature__inner {
+      max-width: var(--design-width);
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tdp-feature__header {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 126px;
+    }
+
+    .tdp-feature__header-num { margin: 0; font-size: var(--text-h3); font-weight: 700; color: var(--color-white-white); line-height: 1.2; }
+    .tdp-feature__header-title { margin: 0; font-size: var(--text-h3); font-weight: 700; color: var(--color-primary-white); line-height: 1.2; }
+    .tdp-feature__points { display: flex; flex-direction: column; gap: 40px; }
+    .tdp-feature__point-row { display: flex; align-items: baseline; gap: 32px; margin-bottom: 12px; }
+    .tdp-feature__point-num { font-size: var(--text-h4); font-weight: 700; color: var(--color-white-white); line-height: 1.2; flex-shrink: 0; }
+    .tdp-feature__point-title { margin: 0; font-size: var(--text-h4); font-weight: 700; color: var(--color-white-white); line-height: 1.2; }
+    .tdp-feature__point-desc { margin: 0; padding-left: 0; font-size: var(--text-h6); font-weight: 400; color: var(--color-primary-white); line-height: 1.5; }
+
+    .tdp-feature__grid {
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+      width: 100%;
+      margin-top: 56px;
+      box-sizing: border-box;
+    }
+
+    .tdp-feature__grid-row {
+      display: flex;
+      flex-direction: row;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .tdp-feature__item {
+      flex: 1 1 0;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .tdp-feature__item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    .tdp-feature__caption {
+      font-size: var(--text-h6);
+      font-weight: 400;
+      color: var(--color-primary-white);
+      line-height: 1.5;
+      box-sizing: border-box;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (min-width: 1024px) {
+      .tdp-feature__inner {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 80px;
+      }
+      .tdp-feature__header {
+        flex: 1 1 50%;
+        max-width: 50%;
+        margin-bottom: 0;
+      }
+      .tdp-feature__points {
+        flex: 1 1 50%;
+        max-width: 50%;
+        min-width: 0;
+      }
+    }
+
+    @media (max-width: 1023px) {
+      .tdp-feature {
+        padding-top: 60px;
+        padding-bottom: 60px;
+        padding-left: clamp(1.5rem, 5.56vw, 80px);
+        padding-right: clamp(1.5rem, 5.56vw, 80px);
+      }
+      .tdp-feature__header {
+        margin-bottom: 60px;
+      }
+      .tdp-feature__grid-row {
+        flex-direction: column;
+      }
+    }
+
+    @media (min-width: 1441px) {
+      .tdp-feature {
+        padding: 136px 80px;
+      }
+    }
+
+    /* Feature #2: Primary white background, same layout as ganson-feature--2, Figma 578-13932 */
+    .ganson-page__inner .tdp-feature-2 {
+      width: 100vw;
+      max-width: none;
+      margin-left: calc(-50vw + 50%);
+      box-sizing: border-box;
+      padding: 136px 0;
+    }
+
+    .tdp-feature-2 {
+      background: var(--color-primary-white);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .tdp-feature-2__header {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+      margin-bottom: 56px;
+      padding-left: clamp(1.5rem, 5.56vw, 80px);
+      padding-right: clamp(1.5rem, 5.56vw, 80px);
+      box-sizing: border-box;
+    }
+
+    .tdp-feature-2__header-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+      width: 100%;
+      min-height: 120px;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: var(--design-width);
+    }
+
+    .tdp-feature-2__header-left { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+    .tdp-feature-2__header-num { margin: 0; font-size: var(--text-h3); font-weight: 700; color: var(--color-primary-black); line-height: 1.2; }
+    .tdp-feature-2__header-title { margin: 0; font-size: var(--text-h3); font-weight: 700; color: var(--color-border); line-height: 1.2; }
+    .tdp-feature-2__header-right { display: flex; flex-direction: column; gap: 8px; max-width: 588px; min-width: 0; text-align: left; }
+    .tdp-feature-2__user-story-label { margin: 0; font-size: var(--text-h4); font-weight: 700; color: var(--color-primary-black); line-height: 1.3; }
+    .tdp-feature-2__user-story-quote { margin: 0; font-size: var(--text-h4); font-weight: 700; color: var(--color-border); line-height: 1.3; }
+
+    .tdp-feature-2__grid {
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .tdp-feature-2__grid-row {
+      display: flex;
+      flex-direction: row;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .tdp-feature-2__item {
+      flex: 1 1 0;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .tdp-feature-2__item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    @media (min-width: 1024px) {
+      .tdp-feature-2__header-row { gap: 80px; }
+      .tdp-feature-2__header-left { flex: 1 1 50%; max-width: 50%; }
+      .tdp-feature-2__header-right { flex: 1 1 50%; max-width: 50%; }
+    }
+
+    @media (max-width: 1023px) {
+      .tdp-feature-2__header-row { flex-direction: column; }
+      .tdp-feature-2__header-right { max-width: none; }
+      .tdp-feature-2__grid-row { flex-direction: column; }
+    }
+
+    /* Feature #3: Interactions & User Journey — ash black, primary white text, Figma 578-13046 */
+    .ganson-page__inner .tdp-feature-3 {
+      width: 100vw;
+      max-width: none;
+      margin-left: calc(-50vw + 50%);
+      box-sizing: border-box;
+      padding: 136px 0;
+    }
+
+    .tdp-feature-3 {
+      background: var(--color-ash-black);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .tdp-feature-3__header {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+      margin-bottom: 56px;
+      padding-left: clamp(1.5rem, 5.56vw, 80px);
+      padding-right: clamp(1.5rem, 5.56vw, 80px);
+      box-sizing: border-box;
+    }
+
+    .tdp-feature-3__header-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+      width: 100%;
+      max-width: var(--design-width);
+      margin-left: auto;
+      margin-right: auto;
+      min-height: 120px;
+    }
+
+    .tdp-feature-3__header-left { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+    .tdp-feature-3__header-num { margin: 0; font-size: var(--text-h3); font-weight: 700; color: var(--color-white-white); line-height: 1.2; }
+    .tdp-feature-3__header-title { margin: 0; font-size: var(--text-h3); font-weight: 700; color: var(--color-primary-white); line-height: 1.2; }
+    .tdp-feature-3__header-right { display: flex; flex-direction: column; gap: 8px; max-width: 588px; min-width: 0; text-align: left; }
+    .tdp-feature-3__header-desc { margin: 0; font-size: var(--text-h4); font-weight: 700; color: var(--color-primary-white); line-height: 1.5; }
+
+    .tdp-feature-3__grid {
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .tdp-feature-3__grid-row {
+      display: flex;
+      flex-direction: row;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .tdp-feature-3__item {
+      flex: 1 1 0;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .tdp-feature-3__item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    .tdp-feature-3__caption {
+      margin: 24px 0 0 0;
+      padding-left: calc(clamp(1.5rem, 5.56vw, 80px) + clamp(1rem, 4vw, 64px));
+      padding-right: calc(clamp(1.5rem, 5.56vw, 80px) + clamp(1rem, 4vw, 64px));
+      font-size: var(--text-h6);
+      font-weight: 400;
+      color: var(--color-primary-white);
+      line-height: 1.5;
+      box-sizing: border-box;
+    }
+
+    @media (min-width: 1024px) {
+      .tdp-feature-3__header-row { gap: 80px; }
+      .tdp-feature-3__header-left { flex: 1 1 50%; max-width: 50%; }
+      .tdp-feature-3__header-right { flex: 1 1 50%; max-width: 50%; }
+    }
+
+    @media (max-width: 1023px) {
+      .tdp-feature-3__header-row { flex-direction: column; }
+      .tdp-feature-3__header-right { max-width: none; }
+      .tdp-feature-3__grid-row { flex-direction: column; }
+    }
+
+    /* Final Designs — Figma 578-13041 */
+    .ganson-page__inner .tdp-final-designs {
+      width: 100vw;
+      max-width: none;
+      margin-left: calc(-50vw + 50%);
+      box-sizing: border-box;
+      padding: 136px 0;
+    }
+
+    .tdp-final-designs {
+      background: var(--color-primary-white);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .tdp-final-designs__inner {
+      max-width: var(--design-width);
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+      padding-left: clamp(1.5rem, 5.56vw, 80px);
+      padding-right: clamp(1.5rem, 5.56vw, 80px);
+    }
+
+    .tdp-final-designs__header {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .tdp-final-designs__title {
+      margin: 0;
+      font-size: var(--text-h3);
+      font-weight: 700;
+      color: var(--color-primary-black);
+      line-height: 1.2;
+    }
+
+    .tdp-final-designs__subtitle {
+      margin: 0;
+      font-size: var(--text-h3);
+      font-weight: 700;
+      color: var(--color-border);
+      line-height: 1.2;
+    }
+
+    .tdp-final-designs__desc {
+      margin: 0;
+      font-size: var(--text-h6);
+      font-weight: 400;
+      color: var(--color-border);
+      line-height: 1.5;
+    }
+
+    @media (min-width: 1024px) {
+      .tdp-final-designs__inner {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 80px;
+      }
+      .tdp-final-designs__header {
+        flex: 1 1 50%;
+        max-width: 50%;
+      }
+      .tdp-final-designs__desc {
+        flex: 1 1 50%;
+        max-width: 50%;
+      }
+    }
+
+    /* Footer: 120px below last content */
+    .ganson-page__footer {
+      margin-top: var(--footer-gap-top);
+      padding-left: var(--footer-padding-sides);
+      padding-right: var(--footer-padding-sides);
+      padding-bottom: var(--footer-padding-bottom);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .ganson-page__footer-copyright {
+      font-size: var(--text-h7);
+      font-weight: 400;
+      color: var(--color-primary-white);
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .ganson-page__footer-social {
+      display: flex;
+      align-items: center;
+      gap: var(--footer-icon-gap);
+    }
+
+    .ganson-page__footer-social a {
+      display: flex;
+      align-items: center;
+      color: var(--color-primary-white);
+      transition: opacity 0.2s ease-in-out;
+    }
+
+    .ganson-page__footer-social a:hover {
+      opacity: 0.7;
+    }
+
+    .ganson-page__footer-social img {
+      width: clamp(1rem, 1.67vw, 24px);
+      height: clamp(1rem, 1.67vw, 24px);
+      object-fit: contain;
+    }
+
+    @media (max-width: 767px) {
+      .ganson-page__footer {
+        flex-direction: column;
+        gap: clamp(1.5rem, 4.17vw, 60px);
+        padding-bottom: clamp(1.5rem, 4.17vw, 60px);
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button type="button" class="ganson-page__exit" id="tdp-exit" aria-label="Back to homepage">
+    <svg class="ganson-page__exit-icon" viewBox="0 0 20 20" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+      <path d="M4 4l12 12M16 4L4 16" />
+    </svg>
+  </button>
+
+  <div id="tdp-page" class="ganson-page">
+    <div class="ganson-page__hero" data-reveal>
+      <img src="public/Images/TDP/tdp1.png" alt="The Distribution Point — TDP & Cahaba Designs Shopify storefront" width="1440" height="840" />
+    </div>
+
+    <div class="ganson-page__inner">
+      <section class="ganson-page__meta" aria-label="Project metadata" data-reveal data-reveal-delay="80">
+        <h1 class="ganson-page__title">The Distribution Point &amp; Cahaba Designs</h1>
+        <hr class="ganson-page__divider" aria-hidden />
+        <div class="ganson-page__meta-row">
+          <div class="ganson-page__meta-group ganson-page__meta-group--content">
+            <div class="ganson-page__meta-item">
+              <h6>Background</h6>
+              <p>The Distribution Point (TDP) needed to modernize their wholesale operations on Shopify. TDP operates a complex B2B ecosystem, requiring a <strong>robust e-commerce architecture</strong>.</p>
+            </div>
+            <div class="ganson-page__meta-item">
+              <h6>The Challenge</h6>
+              <p>Delivering complex logic in a <strong>4-week sprint</strong>. I had to architect a fully functional B2B portal, designing a deep "My Account" hub (for invoices and user management) while simultaneously building custom product pages that visualized real-time inventory across two distinct warehouses.</p>
+            </div>
+            <div class="ganson-page__meta-item">
+              <h6>The Impact</h6>
+              <ul class="ganson-page__meta-list">
+                <li>Executed a high-velocity sprint, delivering <strong>62 high-fidelity pages</strong></li>
+                <li>Successfully launched <strong>two Shopify ecosystems</strong> (TDP & Cahaba Designs), implementing complex B2B logic and multi-warehouse catalog features </li>
+                <li>Drove <strong>measurable engagement</strong>, reducing the bounce rate from 65% to 35% by strengthening brand presence while preserving critical user workflows</li>
+              </ul>
+            </div>
+          </div>
+          <div class="ganson-page__meta-group ganson-page__meta-group--details">
+            <div class="ganson-page__meta-item">
+              <h6>Role</h6>
+              <p>Product Designer</p>
+            </div>
+            <div class="ganson-page__meta-item">
+              <h6>Duration</h6>
+              <p>4 weeks</p>
+            </div>
+            <div class="ganson-page__meta-item">
+              <h6>Website</h6>
+              <p>
+                <a href="https://www.thedistributionpoint.com/" target="_blank" rel="noopener noreferrer">www.thedistributionpoint.com</a><br />
+                <a href="https://www.cahabadesigns.com/" target="_blank" rel="noopener noreferrer">www.cahabadesigns.com</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tdp-feature" aria-label="Feature 1: Different customer groups" data-reveal data-reveal-delay="80">
+        <div class="tdp-feature__inner">
+          <div class="tdp-feature__header">
+            <p class="tdp-feature__header-num">Feature #1</p>
+            <p class="tdp-feature__header-title">Identifying different customer groups</p>
+          </div>
+          <div class="tdp-feature__points">
+            <div class="tdp-feature__point">
+              <div class="tdp-feature__point-row">
+                <span class="tdp-feature__point-num">01</span>
+                <h3 class="tdp-feature__point-title">Guest Customers</h3>
+              </div>
+              <p class="tdp-feature__point-desc">Highlighting logistics capabilities and brand partnerships to convert visitors into registered dealers</p>
+            </div>
+            <div class="tdp-feature__point">
+              <div class="tdp-feature__point-row">
+                <span class="tdp-feature__point-num">02</span>
+                <h3 class="tdp-feature__point-title">Logged-in Customers</h3>
+              </div>
+              <p class="tdp-feature__point-desc">Pivots to transaction, surfacing "Trending" SKUs and "Special Offers" to accelerate the path to checkout</p>
+            </div>
+          </div>
+        </div>
+        <div class="tdp-feature__grid">
+          <div class="tdp-feature__grid-row">
+            <div class="tdp-feature__item">
+              <img src="public/Images/TDP/tdp2.png" alt="TDP Guest view" width="588" height="400" />
+              <p class="tdp-feature__caption">Guest customer experience</p>
+            </div>
+            <div class="tdp-feature__item">
+              <img src="public/Images/TDP/tdp3.png" alt="TDP Logged-in view" width="588" height="400" />
+              <p class="tdp-feature__caption">Logged-in customer experience</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tdp-feature-2" aria-label="Feature 2: Inventory Visibility" data-reveal data-reveal-delay="80">
+        <div class="tdp-feature-2__header">
+          <div class="tdp-feature-2__header-row">
+            <div class="tdp-feature-2__header-left">
+              <p class="tdp-feature-2__header-num">Feature #2</p>
+              <p class="tdp-feature-2__header-title">Inventory Visibility</p>
+            </div>
+            <div class="tdp-feature-2__header-right">
+              <p class="tdp-feature-2__user-story-label">User Story</p>
+              <p class="tdp-feature-2__user-story-quote">"As a Logistics Manager, I need to see exactly how much stock is available in each warehouse directly on the listing page so I can build accurate shipments without clicking into every single product."</p>
+            </div>
+          </div>
+        </div>
+        <div class="tdp-feature-2__grid">
+          <div class="tdp-feature-2__grid-row">
+            <div class="tdp-feature-2__item">
+              <img src="public/Images/TDP/tdp4.png" alt="TDP inventory visibility" width="588" height="400" />
+            </div>
+            <div class="tdp-feature-2__item">
+              <img src="public/Images/TDP/tdp5.png" alt="TDP warehouse stock display" width="588" height="400" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="ganson-page__image-block ganson-page__image-block--labeled">
+        <h4 class="ganson-page__image-block-label">My Accounts (B2B Users)</h4>
+        <img src="public/Images/TDP/tdp6.png" alt="TDP project screen" width="1440" height="960" />
+      </div>
+
+      <section class="tdp-feature-3" aria-label="Feature 3: Interactions & User Journey" data-reveal data-reveal-delay="80">
+        <div class="tdp-feature-3__header">
+          <div class="tdp-feature-3__header-row">
+            <div class="tdp-feature-3__header-left">
+              <p class="tdp-feature-3__header-num">Feature #3</p>
+              <p class="tdp-feature-3__header-title">Interactions &amp; User Journey</p>
+            </div>
+            <div class="tdp-feature-3__header-right">
+              <p class="tdp-feature-3__header-desc">By refining the interactions within these administrative journeys, we transform high-friction data entry into a seamless, self-service workflow.</p>
+            </div>
+          </div>
+        </div>
+        <div class="tdp-feature-3__grid">
+          <div class="tdp-feature-3__grid-row">
+            <div class="tdp-feature-3__item">
+              <img src="public/Images/TDP/tdp7.png" alt="Change Password interface" width="588" height="400" />
+              <p class="tdp-feature-3__caption">Our client research has showed that users often change their password. Creating a dedicated page isolated this sensitive task from the daily ordering workflow.</p>
+            </div>
+            <div class="tdp-feature-3__item">
+              <img src="public/Images/TDP/tdp8.png" alt="Change Password with real-time validation" width="588" height="400" />
+              <p class="tdp-feature-3__caption">By exposing complex password requirements in real-time, the system guides users to a valid password before they click save, eliminating the frustration of failed submissions.</p>
+            </div>
+          </div>
+          <div class="tdp-feature-3__grid-row">
+            <div class="tdp-feature-3__item">
+              <img src="public/Images/TDP/tdp9.png" alt="Billing and Shipping Information" width="588" height="400" />
+              <p class="tdp-feature-3__caption">Users needed a smart interaction to change their shipping address with a click of a button.</p>
+            </div>
+            <div class="tdp-feature-3__item">
+              <img src="public/Images/TDP/tdp10.png" alt="Use as Billing Address prompt" width="588" height="400" />
+              <p class="tdp-feature-3__caption">Upon changing the shipping address, users are prompted to update their billing address.</p>
+            </div>
+          </div>
+          <div class="tdp-feature-3__grid-row">
+            <div class="tdp-feature-3__item">
+              <img src="public/Images/TDP/tdp11.png" alt="Email Invoice with inline validation" width="588" height="400" />
+              <p class="tdp-feature-3__caption">By providing clear inline validation, visually flagging missing fields in the invoice, it prevents failed deliveries of email invoicing.</p>
+            </div>
+            <div class="tdp-feature-3__item">
+              <img src="public/Images/TDP/tdp12.png" alt="Invoice sent successfully notification" width="588" height="400" />
+              <p class="tdp-feature-3__caption">The notification on the top right provides immediate feedback by confirming with the user that the invoice has been sent successfully.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tdp-final-designs" aria-label="Final Designs">
+        <div class="tdp-final-designs__inner">
+          <div class="tdp-final-designs__header">
+            <h3 class="tdp-final-designs__title">Final Designs</h3>
+            <p class="tdp-final-designs__subtitle">TDP &amp; Cahaba Designs</p>
+          </div>
+          <p class="tdp-final-designs__desc">The Distribution Point's website was the main focus of this task, providing custom product landing, product detail, my accounts B2B, and homepages. Cahaba Designs was constructed only using native features on Shopify.</p>
+        </div>
+      </section>
+
+      <div class="ganson-page__image-block">
+        <img src="public/Images/TDP/tdp13.png" alt="TDP project screen" width="1440" height="960" />
+      </div>
+
+      <footer class="ganson-page__footer" role="contentinfo" data-reveal data-reveal-delay="80">
+        <p class="ganson-page__footer-copyright">© 2025 Taira Asakura</p>
+        <nav class="ganson-page__footer-social" aria-label="Social links">
+          <a href="https://x.com/tairaasakura" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer"><img src="public/Images/Homepage/x.svg" alt="" aria-hidden /></a>
+          <a href="https://www.linkedin.com/in/taira-asakura/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><img src="public/Images/Homepage/linkedin.svg" alt="" aria-hidden /></a>
+          <a href="mailto:Asakurataira@gmail.com" aria-label="Email"><img src="public/Images/Homepage/mail.svg" alt="" aria-hidden /></a>
+        </nav>
+      </footer>
+    </div>
+  </div>
+
+  <script src="public/scroll-restore.js"></script>
+  <script src="public/scroll-reveal.js"></script>
+  <script>
+    (function() {
+      var page = document.getElementById('tdp-page');
+      var exitBtn = document.getElementById('tdp-exit');
+
+      exitBtn.addEventListener('click', function() {
+        page.classList.add('is-exiting');
+        page.addEventListener('animationend', function onExitEnd() {
+          page.removeEventListener('animationend', onExitEnd);
+          try { sessionStorage.setItem('returningFromProject', '1'); } catch (e) {}
+          window.location.href = 'index.html';
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
