@@ -4,6 +4,8 @@
   var revealEls = document.querySelectorAll('[data-reveal]');
   if (!revealEls.length) return;
 
+  document.documentElement.classList.add('js-reveal');
+
   var opts = { rootMargin: '0px 0px -10% 0px', threshold: 0 };
   var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {

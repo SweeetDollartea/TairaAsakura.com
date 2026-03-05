@@ -39,20 +39,20 @@
       min-height: 100vh;
     }
 
-    .ganson-page [data-reveal] {
+    html.js-reveal .ganson-page [data-reveal]:not(.is-revealed) {
       opacity: 0;
       transform: translateY(24px);
       transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
                   transform 1s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .ganson-page [data-reveal].is-revealed {
+    html.js-reveal .ganson-page [data-reveal].is-revealed {
       opacity: 1;
       transform: translateY(0);
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .ganson-page [data-reveal] {
+      html.js-reveal .ganson-page [data-reveal] {
         opacity: 1;
         transform: none;
         transition: none;
