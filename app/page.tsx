@@ -106,7 +106,7 @@ export default function Home() {
       <div className="section-divider" role="separator" aria-hidden data-reveal data-reveal-delay="80" />
       <div className="section-me" data-reveal data-reveal-delay="120">
         <div className="section-me__container">
-          <img src="/Images/Homepage/me.png" alt="" />
+          <img src="/Images/Homepage/Me1.jpg" alt="" />
           <div className="section-me__content">
             <p className="section-me__intro">Hi, I&apos;m Taira</p>
             <p className="section-me__bio">

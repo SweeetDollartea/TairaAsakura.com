@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export function useScrollReveal() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const revealEls = document.querySelectorAll("[data-reveal]");
     if (!revealEls.length) return;
@@ -28,5 +31,5 @@ export function useScrollReveal() {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
 }

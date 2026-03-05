@@ -37,7 +37,7 @@
   var isReturning = false;
   try { isReturning = sessionStorage.getItem('returningFromProject'); } catch (e) {}
 
-  var projectPages = ['ganson.html', 'tdp.html', 'strybuc.html', 'site-optics.html', 'design-challenge.html'];
+  var projectPages = ['ganson', 'tdp', 'strybuc', 'site-optics', 'design-challenge'];
   var isProjectPage = projectPages.indexOf(name) !== -1;
 
   if (isProjectPage) {
