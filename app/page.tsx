@@ -76,6 +76,13 @@ export default function Home() {
       <section className="section-exp" aria-label="Experience" data-reveal data-reveal-delay="120">
         <div className="section-exp__block">
           <div className="section-exp__entry">
+            <span className="section-exp__entry-role">Head of Product & Design | Cofounder @Lintra</span>
+            <span className="section-exp__entry-date">Nov 2025 - Present, Irvine</span>
+          </div>
+          <div className="section-exp__divider" role="separator" aria-hidden />
+        </div>
+        <div className="section-exp__block">
+          <div className="section-exp__entry">
             <span className="section-exp__entry-role">Product Designer @Silk Commerce</span>
             <span className="section-exp__entry-date">Sept 2024 - Nov 2025, Irvine</span>
           </div>
@@ -110,7 +117,7 @@ export default function Home() {
           <div className="section-me__content">
             <p className="section-me__intro">Hi, I&apos;m Taira</p>
             <p className="section-me__bio">
-              I&apos;m a product designer based in California. Previously @SilkCommerce. I design websites and manage digital projects with a focus on clarity, usability, and strong outcomes. I enjoy working hands-on with clients and developers to turn ideas into experiences that feel simple, intentional, and effective.
+              I&apos;m a product designer and startup founder specializing in B2B SaaS and e-commerce. I'm currently co-founding Lintra, where I lead end-to-end product strategy and UX design to build streamlined patient reporting experiences. With a background spanning mobile apps, AR tools, and custom e-commerce platforms, I translate complex user needs into high-impact digital products.
             </p>
             <a
               href="/Images/Homepage/Taira-Asakura-Resume.pdf"
