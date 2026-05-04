@@ -117,7 +117,7 @@ export default function Home() {
           <div className="section-me__content">
             <p className="section-me__intro">Hi, I&apos;m Taira</p>
             <p className="section-me__bio">
-              I&apos;m a product designer and startup founder specializing in B2B SaaS and e-commerce. I'm currently co-founding Lintra, where I lead end-to-end product strategy and UX design to build streamlined patient reporting experiences. With a background spanning mobile apps, AR tools, and custom e-commerce platforms, I translate complex user needs into high-impact digital products.
+              I&apos;m a product designer and startup founder specializing in B2B SaaS and E-Commerce. I&apos;m currently co-founding Lintra, where I lead end-to-end product strategy and UX design to build streamlined patient reporting experiences. With a background spanning mobile apps, AR tools, and custom e-commerce platforms, I translate complex user needs into high-impact digital products.
             </p>
             <a
               href="/Images/Homepage/Taira-Asakura-Resume.pdf"
